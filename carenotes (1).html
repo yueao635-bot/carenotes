@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>護理創新誌 CareNotes｜用數據看懂護理，用創新選對好物</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0284C7 0%, #0D9488 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at top right, #E0F2FE 0%, #F0FDFA 50%, #F8FAFC 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.1), 0 8px 10px -6px rgba(2, 132, 199, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <!-- 導覽列 -->
+    <nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-600 to-teal-500 flex items-center justify-center text-white font-black text-lg shadow-sm">
+                        CN
+                    </div>
+                    <span class="font-black text-xl tracking-tight text-slate-800">護理創新誌 <span class="text-sky-600 font-bold text-sm">CareNotes</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#brand" class="hover:text-sky-600 transition">品牌理念</a>
+                    <a href="#calculator" class="hover:text-sky-600 transition">數據省錢試算</a>
+                    <a href="#products" class="hover:text-sky-600 transition">學生宿舍組合</a>
+                    <a href="#comparison" class="hover:text-sky-600 transition">競品大解析</a>
+                    <a href="#youtube" class="hover:text-sky-600 transition">影音企劃</a>
+                </div>
+                <a href="#products" class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold px-4 py-2 rounded-full shadow-sm transition">
+                    立即選購組合
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 主視覺區塊 -->
+    <header class="hero-bg pt-16 pb-24 border-b border-slate-200/60 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200 text-teal-800 px-3.5 py-1.5 rounded-full text-xs font-bold">
+                        <span class="flex h-2 w-2 rounded-full bg-teal-500 animate-ping"></span>
+                        <span>專為大學生與小資族打造的 0 元數據企劃</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.15]">
+                        用數據看懂護理，<br>
+                        <span class="gradient-text">用創新選對好物。</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 leading-relaxed max-w-2xl">
+                        打破傳統口腔護理的資訊不對稱與老字號「白人購物網」的刻板印象。透過 Google Sheets 精算單位價格與 AI 衛教懶人包，讓你在宿舍用最合理的預算，打造自信健康的笑容！
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#calculator" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-slate-900/15 transition flex items-center space-x-2">
+                            <span>📊 算算四年能省多少錢</span>
+                        </a>
+                        <a href="#youtube" class="bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold px-7 py-3.5 rounded-xl transition flex items-center space-x-2">
+                            <span class="text-red-600">▶</span>
+                            <span>觀看 90 秒核心概念影片</span>
+                        </a>
+                    </div>
+                    <!-- 數據亮點小卡 -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/80">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-sky-600">35%~40%</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">組合包平均省錢比例</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-teal-600">1/3 價格</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">對比日韓進口品牌</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-black text-slate-800">3 個月</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">宿舍一次購足免補貨</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側視覺卡片：數據矩陣預覽 -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 relative">
+                        <div class="absolute -top-4 -right-4 bg-amber-400 text-slate-900 font-black text-xs px-3.5 py-1.5 rounded-full shadow-md rotate-3">
+                            MVP 數據驗證
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-1">單買 vs. 囤貨包 3個月花費對比</h3>
+                        <p class="text-xs text-slate-500 mb-6">數據來源：CareNotes 白人購物網價格矩陣分析表</p>
+                        <div class="h-64">
+                            <canvas id="heroChart"></canvas>
+                        </div>
+                        <div class="mt-4 bg-sky-50 rounded-xl p-3.5 text-xs text-sky-900 flex items-start space-x-2.5">
+                            <span class="text-base">💡</span>
+                            <p><strong>CareNotes 數據洞察：</strong> 大學四年持續使用高 CP 值在地老字號組合，省下的日常開銷甚至足夠兌換一張<strong>日本來回機票</strong>！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 品牌核心競爭力 -->
+    <section id="brand" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-wider text-sky-600 uppercase mb-2">Brand Positioning</h2>
+                <h3 class="text-3xl font-black text-slate-900">為什麼選擇護理創新誌？</h3>
+                <p class="text-slate-600 mt-3">我們不盲目追捧高價廣告品牌，而是用科學數據與學生視角，重新發掘台灣在地老字號的真實價值。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-5">📊</div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">數據導向精算</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        運用 Google Sheets 與 Excel 建立商品價格矩陣，精確計算「每克單價」與「CP值分數」，拒絕智商稅與華而不實的包裝溢價。
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover">
+                    <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center text-2xl mb-5">🤖</div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">AI 衛教懶人包</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        結合 AI 數位互動與視覺化圖表，將艱澀的口腔成分轉化為「宿舍保健 3 步驟」與「選品避雷指南」，30 秒就能看懂。
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 card-hover">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-5">🎒</div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">專為宿舍生活設計</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        針對 18-24 歲住宿舍與外租族痛點，設計 3 個月一次購足的囤貨包與隨身攜帶組，解決頻繁補貨與約會/簡報前口氣尷尬。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互動省錢試算器 -->
+    <section id="calculator" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-xs font-bold px-3 py-1 rounded-full">INTERACTIVE TOOL</span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-3">大學四年刷牙能省下一趟日本機票？</h2>
+                <p class="text-slate-400 mt-3">拖動下方滑桿，立即用 CareNotes 數據模型試算你的口腔護理省錢潛力！</p>
+            </div>
+
+            <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-2">
+                                <span class="text-slate-300">目前習慣購買的牙膏/護理品牌單價</span>
+                                <span id="priceDisplay" class="text-teal-400 text-lg">NT$ 180 / 支</span>
+                            </div>
+                            <input type="range" id="brandPrice" min="80" max="300" step="10" value="180" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-teal-400">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                <span>平價開架 ($80)</span>
+                                <span>日韓進口 ($180)</span>
+                                <span>專櫃高價 ($300)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-2">
+                                <span class="text-slate-300">預計計算時間長度</span>
+                                <span id="yearsDisplay" class="text-sky-400 text-lg">4 年 (大學完整期間)</span>
+                            </div>
+                            <input type="range" id="yearsRange" min="1" max="4" step="1" value="4" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-400">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                <span>1 年</span>
+                                <span>2 年</span>
+                                <span>3 年</span>
+                                <span>4 年</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/70 rounded-xl p-4 border border-slate-700/80 text-xs text-slate-400 space-y-1">
+                            <p>• 計算基準：每季 (3個月) 消耗 1 組完整口腔護理（牙膏+牙刷+漱口水）。</p>
+                            <p>• 對照組：CareNotes【學生宿舍口腔護理囤貨包】季均價 NT$ 329。</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-sky-600 to-teal-600 rounded-2xl p-8 text-center shadow-lg">
+                        <p class="text-sky-100 text-sm font-bold uppercase tracking-wider">改用 CareNotes 推薦組合後，總計可省下</p>
+                        <div class="text-5xl sm:text-6xl font-black my-3 tracking-tight" id="totalSaved">
+                            NT$ 6,896
+                        </div>
+                        <div id="rewardBadge" class="inline-block bg-white/20 backdrop-blur-sm text-white font-bold text-sm px-4 py-1.5 rounded-full mt-2">
+                            ✈️ 相當於一張台灣飛沖繩/東京來回機票！
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-white/20 grid grid-cols-2 gap-4 text-left text-xs">
+                            <div>
+                                <span class="text-sky-200 block">原習慣總花費</span>
+                                <span class="font-bold text-lg" id="originalTotal">NT$ 12,160</span>
+                            </div>
+                            <div>
+                                <span class="text-sky-200 block">CareNotes 組合花費</span>
+                                <span class="font-bold text-lg" id="carenotesTotal">NT$ 5,264</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品組合規劃 -->
+    <section id="products" class="py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-sm font-bold tracking-wider text-teal-600 uppercase mb-2">Product Portfolio</h2>
+                <h3 class="text-3xl font-black text-slate-900">老字號新組合｜學生專屬護理方案</h3>
+                <p class="text-slate-600 mt-3">嚴選「白人購物網」經典高評價單品，針對大學生不同場景精準打包。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- 商品 1：拳頭商品 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between card-hover">
+                    <div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-black px-3 py-1 rounded-full">🔥 爆款體驗價</span>
+                        <h4 class="text-2xl font-black text-slate-900 mt-4">CP值爆表爆款防蛀組</h4>
+                        <p class="text-sm text-slate-500 mt-1">適合背包隨身、圖書館、約會前急救</p>
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-slate-900">NT$ 199</span>
+                            <span class="text-sm text-slate-400 line-through ml-2">原價 $290</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>白人隨身防蛀牙膏 × 2</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>旅行折疊護齦牙刷組 × 1</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>隨身攜帶型清新漱口水 × 5條</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>無負擔入門，解決課堂簡報口氣尷尬</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('CP值爆表爆款防蛀組', 'NT$ 199')" class="w-full py-3.5 rounded-xl border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition">
+                        選擇此入門方案
+                    </button>
+                </div>
+
+                <!-- 商品 2：主打商品 (Highlight) -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-sky-600 shadow-xl relative flex flex-col justify-between card-hover">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-600 text-white text-xs font-black px-4 py-1 rounded-full shadow">
+                        ⭐ 最多大學生選擇・省下 38%
+                    </div>
+                    <div>
+                        <span class="bg-sky-100 text-sky-800 text-xs font-black px-3 py-1 rounded-full">📦 3個月一次購足</span>
+                        <h4 class="text-2xl font-black text-slate-900 mt-4">學生宿舍口腔護理囤貨包</h4>
+                        <p class="text-sm text-slate-500 mt-1">專為住宿舍/外租族量身打造，整學期免補貨</p>
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-sky-600">NT$ 299 - 399</span>
+                            <span class="text-sm text-slate-400 line-through ml-2">單買 $540</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-700 mb-8">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-sky-600 font-bold">✓</span>
+                                <span><strong>白人經典防蛀牙膏 (大) × 2 支</strong></span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-sky-600 font-bold">✓</span>
+                                <span><strong>軟毛護齦牙刷 × 3 支</strong>（每月定期更換）</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-sky-600 font-bold">✓</span>
+                                <span><strong>家庭號溫和漱口水 × 1 瓶</strong>（不辣口配方）</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-sky-600 font-bold">✓</span>
+                                <span>加贈：AI 宿舍口腔保健 3 步驟實體圖卡</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('學生宿舍口腔護理囤貨包', 'NT$ 299 - 399')" class="w-full py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold shadow-lg shadow-sky-600/25 transition">
+                        立即搶購宿舍囤貨包
+                    </button>
+                </div>
+
+                <!-- 商品 3：免費引流錨點 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between card-hover">
+                    <div>
+                        <span class="bg-teal-100 text-teal-800 text-xs font-black px-3 py-1 rounded-full">🎁 0元免費資源</span>
+                        <h4 class="text-2xl font-black text-slate-900 mt-4">口腔衛教與 CP值計算模板</h4>
+                        <p class="text-sm text-slate-500 mt-1">公開透明的數據工具，教你成為聰明消費者</p>
+                        <div class="my-6">
+                            <span class="text-4xl font-black text-teal-600">NT$ 0</span>
+                            <span class="text-sm text-slate-500 ml-2">免費下載 / 觀看</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>市售 10 大牙膏單位克數價格矩陣表</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>Google Sheets 自動 CP 值試算公式</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>Canva 一頁式「選品避雷指南」懶人包</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-teal-500 font-bold">✓</span>
+                                <span>YouTube 資訊欄 AI 衛教問答指引</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('口腔衛教與 CP值計算模板 (免費資源)', 'NT$ 0')" class="w-full py-3.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold transition">
+                        免費領取 Excel 模板
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 競品分析表格 -->
+    <section id="comparison" class="py-20 bg-white border-t border-slate-200/70">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-sm font-bold tracking-wider text-sky-600 uppercase mb-2">Market Analysis</h2>
+                <h3 class="text-3xl font-black text-slate-900">市場競品客觀數據大解析</h3>
+                <p class="text-slate-600 mt-3">我們把市面上常見品牌攤在陽光下比較，讓你看清每一分錢花在哪裡。</p>
+            </div>
+
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-sm">
+                            <th class="p-4 font-bold">比較維度</th>
+                            <th class="p-4 font-bold text-sky-300 bg-sky-950/60">護理創新誌 × 白人購物網</th>
+                            <th class="p-4 font-bold text-slate-300">日韓/進口新興品牌 (Ora2等)</th>
+                            <th class="p-4 font-bold text-slate-300">傳統通路單買老字號</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-sm">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 font-bold text-slate-800">預估單支/組成本</td>
+                            <td class="p-4 font-black text-sky-600 bg-sky-50/50">約 NT$ 40 - 65 (組合更省)</td>
+                            <td class="p-4 text-slate-600">NT$ 150 - 250 / 支</td>
+                            <td class="p-4 text-slate-600">NT$ 50 - 80 / 支</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 font-bold text-slate-800">學生長期負擔</td>
+                            <td class="p-4 font-bold text-teal-600 bg-sky-50/50">極低（省下 35%~40%）</td>
+                            <td class="p-4 text-red-500">較重（行銷溢價高）</td>
+                            <td class="p-4 text-slate-600">低，但需頻繁跑賣場</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 font-bold text-slate-800">選購與衛教支援</td>
+                            <td class="p-4 font-bold text-slate-800 bg-sky-50/50">✅ AI 衛教懶人包 + 數據圖表</td>
+                            <td class="p-4 text-slate-600">網紅開箱、廣告為主</td>
+                            <td class="p-4 text-slate-400">❌ 缺乏年輕化溝通</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 font-bold text-slate-800">宿舍生活適配度</td>
+                            <td class="p-4 font-bold text-slate-800 bg-sky-50/50">✅ 3個月囤貨包 + 隨身組</td>
+                            <td class="p-4 text-slate-600">包裝時尚、單品購買</td>
+                            <td class="p-4 text-slate-600">傳統大包裝，無場景設計</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube 與社群媒體企劃展示 -->
+    <section id="youtube" class="py-20 bg-gradient-to-b from-slate-50 to-sky-50/50 border-t border-slate-200/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-5">
+                    <div class="inline-flex items-center space-x-2 bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">
+                        <span>▶ YouTube MVP 首發企劃</span>
+                    </div>
+                    <h3 class="text-3xl font-black text-slate-900 leading-tight">
+                        《大學四年刷牙竟能省下一趟日本機票？數據算給你看！》
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        我們運用 100% 免費工具（Google Sheets 數據分析 + Canva 動態簡報 + CapCut 剪輯），打造 90 秒高節奏實測解析影片，帶你用年輕人的視角重新認識台灣老字號品牌。
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700">#2026宿舍必備</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700">#學生CP值口腔護理</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700">#白人購物網組合</span>
+                    </div>
+                    <div class="pt-4 flex items-center space-x-4">
+                        <a href="#products" class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl shadow-md transition">
+                            前往 YouTube 頻道
+                        </a>
+                        <span class="text-xs text-slate-500">同步連載於 IG @carenotes_tw & Dcard 校園版</span>
+                    </div>
+                </div>
+
+                <!-- 模擬影片播放器介面 -->
+                <div class="lg:col-span-6">
+                    <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 aspect-video relative group flex flex-col justify-between p-6 text-white">
+                        <div class="flex justify-between items-center z-10">
+                            <span class="bg-black/60 backdrop-blur-sm text-xs px-3 py-1 rounded-full font-medium">護理創新誌 CareNotes｜01</span>
+                            <span class="bg-sky-500 text-white text-xs font-bold px-2.5 py-0.5 rounded">01:30 精華版</span>
+                        </div>
+                        
+                        <div class="text-center my-auto z-10">
+                            <button onclick="openModal('YouTube 核心概念介紹影片', '免費觀看')" class="w-16 h-16 bg-red-600 group-hover:scale-110 transition rounded-full flex items-center justify-center mx-auto shadow-lg shadow-red-600/40">
+                                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                            <p class="mt-4 font-bold text-lg tracking-wide">點擊預覽：白人購物網 CP 值數據開箱</p>
+                        </div>
+
+                        <div class="z-10">
+                            <div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-red-600 w-1/3 h-full"></div>
+                            </div>
+                            <div class="flex justify-between text-[11px] text-slate-400 mt-1.5">
+                                <span>00:30 / 01:30</span>
+                                <span>1080P HD・CC 字幕已開啟</span>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-tr from-sky-900/40 via-transparent to-teal-900/40 pointer-events-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <div class="flex items-center space-x-2 text-white font-black text-lg">
+                    <span class="text-sky-400">護理創新誌 CareNotes</span>
+                </div>
+                <p class="text-xs mt-1 text-slate-500">用數據看懂護理，用創新選對好物｜大學品牌創新行銷 MVP 專案</p>
+            </div>
+            <div class="flex space-x-6 text-xs font-medium">
+                <a href="#" class="hover:text-white transition">YouTube 頻道</a>
+                <a href="#" class="hover:text-white transition">Instagram (@carenotes_tw)</a>
+                <a href="#" class="hover:text-white transition">Dcard 創作者看板</a>
+                <a href="#" class="hover:text-white transition">白人購物網學生專區</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 互動彈窗 (模擬下單/領取資源) -->
+    <div id="actionModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl transform transition-all">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase">CareNotes 快速通道</span>
+                    <h4 id="modalTitle" class="text-xl font-black text-slate-900 mt-1">商品名稱</h4>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 text-2xl leading-none">&times;</button>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">
+                您選擇的方案金額為 <strong id="modalPrice" class="text-sky-600">NT$ 0</strong>。支援 Line Pay、街口支付與超商取貨付款（7-11 / 全家）。
+            </p>
+            <div class="space-y-3 mb-6">
+                <input type="text" id="userNameInput" placeholder="請輸入您的學校或收件人暱稱" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-sky-600">
+                <input type="email" id="userEmailInput" placeholder="請輸入 Email（接收 AI 衛教懶人包與訂單通知）" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-sky-600">
+            </div>
+            <button onclick="submitOrder()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 rounded-xl shadow-md transition">
+                確認送出並前往導流頁面
+            </button>
+        </div>
+    </div>
+
+    <!-- 網頁底部 Toast 通知提示框 (取代傳統 alert) -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden max-w-sm bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-700 flex items-start space-x-3 transition-all">
+        <span class="text-teal-400 text-xl">✅</span>
+        <div class="text-sm">
+            <p class="font-bold text-white">登記成功！</p>
+            <p class="text-slate-300 text-xs mt-1">感謝支持《護理創新誌 CareNotes》！已為您模擬導流至白人購物網學生優惠專區。</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. 初始化 Hero 區塊的 Chart.js 價格對比圖表
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('heroChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['日韓進口品牌組合', '一般通路單買老字號', 'CareNotes 宿舍囤貨包'],
+                    datasets: [{
+                        label: '每季 (3個月) 平均花費 (NT$)',
+                        data: [760, 540, 329],
+                        backgroundColor: [
+                            'rgba(148, 163, 184, 0.7)',
+                            'rgba(56, 189, 248, 0.7)',
+                            'rgba(13, 148, 136, 0.9)'
+                        ],
+                        borderColor: [
+                            'rgb(100, 116, 139)',
+                            'rgb(2, 132, 199)',
+                            'rgb(15, 118, 110)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#F1F5F9' },
+                            ticks: {
+                                callback: function(value) { return '$' + value; }
+                            }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 初始化省錢試算器數值
+            calculateSavings();
+        });
+
+        // 2. 互動式四年省錢試算器邏輯
+        const brandPriceInput = document.getElementById('brandPrice');
+        const yearsRangeInput = document.getElementById('yearsRange');
+
+        function calculateSavings() {
+            const singlePastePrice = parseInt(brandPriceInput.value);
+            const years = parseInt(yearsRangeInput.value);
+            const quarters = years * 4; // 每年 4 季 (每季 3 個月)
+
+            // 推算一般品牌每季完整護理包 (2支牙膏 + 3支牙刷 + 1瓶漱口水) 的花費
+            const quarterlyOriginalCost = (singlePastePrice * 2) + 240 + 160;
+            const quarterlyCareNotesCost = 329; // CareNotes 宿舍囤貨包均價
+
+            const originalTotal = quarterlyOriginalCost * quarters;
+            const carenotesTotal = quarterlyCareNotesCost * quarters;
+            const saved = Math.max(0, originalTotal - carenotesTotal);
+
+            // 更新畫面顯示
+            document.getElementById('priceDisplay').textContent = `NT$ ${singlePastePrice} / 支`;
+            document.getElementById('yearsDisplay').textContent = years === 4 ? '4 年 (大學完整期間)' : `${years} 年`;
+            document.getElementById('totalSaved').textContent = `NT$ ${saved.toLocaleString()}`;
+            document.getElementById('originalTotal').textContent = `NT$ ${originalTotal.toLocaleString()}`;
+            document.getElementById('carenotesTotal').textContent = `NT$ ${carenotesTotal.toLocaleString()}`;
+
+            // 動態更新獎勵等級徽章
+            const badge = document.getElementById('rewardBadge');
+            if (saved >= 6500) {
+                badge.textContent = '✈️ 相當於一張台灣飛沖繩/東京來回機票！';
+            } else if (saved >= 3500) {
+                badge.textContent = '🎧 相當於省下一副藍牙降噪耳機或期末聚餐基金！';
+            } else if (saved >= 1500) {
+                badge.textContent = '☕ 相當於免費喝了 30 杯超商
